@@ -46,10 +46,10 @@ public class TicTacToe
     public TicTacToe() {
         // Initialize Squares in the board
         this.board = new Square[3][3];
-        this.window = new TicTacToeViewer(board);
+        window = new TicTacToeViewer(this);
         for(int row = 0; row < this.board.length; row++) {
             for(int col = 0; col< this.board[row].length; col++) {
-                this.board[row][col] = new Square(row, col);
+                this.board[row][col] = new Square(row, col, window);
             }
         }
 
@@ -274,7 +274,6 @@ public class TicTacToe
      * Prints the board to the console
      */
     private void printBoard() {
-        System.out.println("  0 1 2");
         int row = 0;
         for(Square[] array : this.board) {
             System.out.print(row + " ");

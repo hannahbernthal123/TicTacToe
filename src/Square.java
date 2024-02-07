@@ -18,6 +18,9 @@ public class Square {
     private int row;
     private int col;
     private boolean isWinningSquare;
+    private TicTacToeViewer square;
+    private Image o;
+    private Image x;
 
     /**
      * Constructor to initialize one Square of the
@@ -25,12 +28,14 @@ public class Square {
      * @param row the row the square is in
      * @param col the column the square is in
      */
-    public Square(int row, int col) {
+    public Square(int row, int col, TicTacToeViewer square) {
         this.row = row;
         this.col = col;
-
+        this.square = square;
         this.marker = TicTacToe.BLANK;
         this.isWinningSquare = false;
+        x = square.getxImage();
+        o = square.getoImage();
     }
 
     /******************** Getters and Setters ********************/
@@ -62,12 +67,27 @@ public class Square {
     }
 
     public void draw(Graphics g) {
-        // TODO: Write the draw() method for a Circle.
         g.setColor(Color.BLACK);
-        if (marker.equals("X")) {
-            g.
+        for (int i = 0; i < 3; i++) {
+            g.drawString(String.valueOf(i), 210 + (i * 120), 80);
         }
-        g.drawRect(190 + (200*col), 100+ (200*row), 200, 200);
+        for (int i = 0; i < 3; i++) {
+            g.drawString(String.valueOf(i), 160, 120 + (i * 120));
+        }
+        g.drawRect(190 + (100*col), 100+ (100*row), 100, 100);
+        if (isWinningSquare == true) {
+            g.setColor(Color.GREEN);
+            g.fillRect(190 + (100*col), 100+ (100*row), 100, 100);
+        }
+        if (marker.equals("X")) {
+
+            g.drawImage(x, 190 + (100*col), 100+ (100*row), 100, 100, square);
+        }
+        if (marker.equals("O")) {
+            //TicTacToe.O_MARKER
+
+            g.drawImage(o, 190 + (100*col), 100+ (100*row), 100, 100, square);
+        }
     }
 
 }
